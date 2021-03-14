@@ -11,6 +11,12 @@ export const getters = {
   cartShow(state) {
     return state.cartShow
   },
+  itemById(state) {
+    return (item) => state.cart.find((i) => i.id === item.id)
+  },
+  cartItemsExeptId(state) {
+    return (item) => state.cart.filter((i) => i.id !== item.id)
+  },
   usdt(state) {
     return state.usdt
   },
@@ -31,26 +37,46 @@ export const getters = {
 }
 
 export const mutations = {
-  addToCart(state, item) {
-    const record = state.cart.find((i) => i.id === item.id)
-    if (!record) {
-      state.cart.push({
-        ...item,
-        quantity: 1,
-      })
-    } else if (record.quantity < record.left) record.quantity++
+  addNewItem(state, item) {
+    state.cart.push({
+      ...item,
+      quantity: 1,
+    })
   },
-  changeQuantity(state, { payload }) {
+  setQuantity(state, { payload }) {
     const record = state.cart.find((i) => i.id === payload.item.id)
-    record.quantity = payload.quantity
+    if (payload.quantity) {
+      record.quantity = payload.quantity
+    } else {
+      record.quantity++
+    }
   },
-  removeFromCart(state, item) {
-    state.cart = state.cart.filter((i) => i.id !== item.id)
+  setCart(state, payload) {
+    state.cart = payload
   },
   toggleCart(state) {
     state.cartShow = !state.cartShow
   },
   setUsdt(state, payload) {
     state.usdt = payload
+  },
+}
+export const actions = {
+  addToCart({ commit, getters }, item) {
+    const record = getters.itemById(item)
+    if (!record) {
+      commit('addNewItem', item)
+    } else if (record.quantity < record.left) {
+      const payload = {
+        item: record,
+      }
+      commit('setQuantity', { payload })
+    }
+  },
+  setQuantity({ commit }, payload) {
+    commit('setQuantity', payload)
+  },
+  removeFromCart({ commit, getters }, payload) {
+    commit('setCart', getters.cartItemsExeptId(payload))
   },
 }

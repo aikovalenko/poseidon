@@ -57,7 +57,7 @@ export default {
     setInterval(() => {
       this.fetchCourses()
       this.$store.commit('setUsdt', this.getRandomArbitrary(20, 80))
-    }, 1500)
+    }, 15000)
   },
   methods: {
     async fetchCourses() {

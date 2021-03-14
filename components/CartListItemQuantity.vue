@@ -13,6 +13,7 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
 export default {
   props: {
     item: {
@@ -53,6 +54,7 @@ export default {
     this.value = this.item.quantity
   },
   methods: {
+    ...mapActions(['setQuantity']),
     validate(e) {
       const exeptions = ['KeyE', 'Minus', 'Equal', 'Plus', 'Comma', 'Period']
       if (exeptions.includes(e.code)) {
@@ -64,7 +66,7 @@ export default {
         item: this.item,
         quantity: value,
       }
-      this.$store.commit('changeQuantity', { payload })
+      this.setQuantity({ payload })
     },
     changeQuantityByInput(event) {
       const newQuantity = Number(event.target.value)

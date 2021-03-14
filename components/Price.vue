@@ -2,24 +2,15 @@
   <span :class="changeClass">{{ convertedPrice }}</span>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import convertPrice from '~/mixins/convertPrice'
 export default {
-  props: {
-    price: {
-      type: Number,
-      required: true,
-    },
-  },
+  mixins: [convertPrice],
   data() {
     return {
       change: null,
     }
   },
   computed: {
-    ...mapGetters(['usdt']),
-    convertedPrice() {
-      return Number((this.price * this.usdt).toFixed(2))
-    },
     changeClass() {
       let className = ''
       if (this.change === 'up') {
@@ -39,7 +30,7 @@ export default {
       } else this.change = null
       setTimeout(() => {
         this.change = null
-      }, 1000)
+      }, 5000)
     },
   },
 }
@@ -47,28 +38,28 @@ export default {
 
 <style lang="postcss" scoped>
 .price-down {
-  animation: bg-green 0.8s ease;
+  animation: bg-green 3s ease;
 }
 
 .price-up {
-  animation: bg-red 0.8s ease;
+  animation: bg-red 3s ease;
 }
 
 @keyframes bg-green {
   0% {
-    @apply bg-green-300;
+    background-color: green;
   }
   100% {
-    @apply bg-transparent;
+    background-color: transparent;
   }
 }
 
 @keyframes bg-red {
   0% {
-    @apply bg-red-300;
+    background-color: red;
   }
   100% {
-    @apply bg-transparent;
+    background-color: transparent;
   }
 }
 </style>

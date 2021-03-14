@@ -15,6 +15,7 @@
   </tr>
 </template>
 <script>
+import { mapActions } from 'vuex'
 import CartListItemQuantity from './CartListItemQuantity.vue'
 import Price from './Price.vue'
 export default {
@@ -26,9 +27,7 @@ export default {
     },
   },
   methods: {
-    removeFromCart(item) {
-      this.$store.commit('removeFromCart', item)
-    },
+    ...mapActions(['removeFromCart']),
   },
 }
 </script>

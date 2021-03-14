@@ -5,6 +5,7 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
 import Price from './Price.vue'
 export default {
   components: { Price },
@@ -15,9 +16,7 @@ export default {
     },
   },
   methods: {
-    addToCart(item) {
-      this.$store.commit('addToCart', item)
-    },
+    ...mapActions(['addToCart']),
   },
 }
 </script>

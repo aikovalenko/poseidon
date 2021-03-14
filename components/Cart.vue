@@ -12,21 +12,21 @@
       </button>
     </div>
     <CartList />
-    <div class="flex justify-end">Общая стоимость {{ cartTotal }}</div>
+    <div class="flex justify-end">
+      <CartTotal :price="cartTotal" />
+    </div>
   </div>
 </template>
 <script>
 import { mapGetters } from 'vuex'
 import CartList from './CartList.vue'
+import CartTotal from './CartTotal.vue'
 export default {
-  components: { CartList },
+  components: { CartList, CartTotal },
   computed: {
     ...mapGetters(['cart', 'cartShow', 'cartQuantity', 'cartTotal']),
   },
   methods: {
-    removeFromCart(item) {
-      this.$store.commit('removeFromCart', item)
-    },
     toggleCart() {
       this.$store.commit('toggleCart')
     },
