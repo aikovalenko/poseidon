@@ -4,21 +4,22 @@
     <Cart />
 
     <div class="space-y-4">
-      <div v-for="(value, key, index) in dataByCategory" :key="index">
-        <div class="mb-2 text-lg font-medium">{{ key }}</div>
-        <div v-for="x in value" :key="x.id">
-          <div class="hover:bg-gray-100 cursor-pointer" @click="addToCart(x)">
-            {{ x.name }} <span class="text-xs">({{ x.left }})</span> -
-            <span class="">{{ x.price }}</span>
-          </div>
-        </div>
-      </div>
+      <CategoriesList
+        v-for="(value, key, index) in dataByCategory"
+        :key="index"
+        :goods="value"
+        :category="key"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import CartOpener from '~/components/CartOpener.vue'
+import Cart from '~/components/Cart.vue'
+import CategoriesList from '~/components/CategoriesList.vue'
 export default {
+  components: { CartOpener, Cart, CategoriesList },
   async asyncData({ $axios }) {
     const data = await $axios
       .get(process.env.baseURL + '/data/data.json')

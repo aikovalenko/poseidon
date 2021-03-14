@@ -11,16 +11,12 @@
   </tr>
 </template>
 <script>
-import { mapGetters } from 'vuex'
 export default {
   props: {
     item: {
       type: Object,
       required: true,
     },
-  },
-  computed: {
-    ...mapGetters(['cartQuantity']),
   },
   methods: {
     removeFromCart(item) {
