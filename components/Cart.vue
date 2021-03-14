@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="cartShow"
-    class="fixed right-0 top-0 w-full max-w-4xl p-4 space-y-4 bg-white shadow-md"
+    class="fixed right-0 top-0 w-full max-h-full max-w-4xl p-4 space-y-4 bg-white shadow-md overflow-y-auto"
   >
     <div class="flex justify-end">
       <button

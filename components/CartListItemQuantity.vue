@@ -49,7 +49,7 @@ export default {
       this.value = newVal
     },
   },
-  created() {
+  mounted() {
     this.value = this.item.quantity
   },
   methods: {

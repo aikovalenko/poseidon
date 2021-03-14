@@ -1,6 +1,7 @@
 export const state = () => ({
   cart: [],
   cartShow: false,
+  usdt: false,
 })
 
 export const getters = {
@@ -10,17 +11,22 @@ export const getters = {
   cartShow(state) {
     return state.cartShow
   },
+  usdt(state) {
+    return state.usdt
+  },
   cartQuantity(state) {
     return state.cart.reduce((acc, item) => {
       return item.quantity + acc
     }, 0)
   },
   cartTotal(state) {
-    return state.cart
-      .reduce((acc, item) => {
-        return item.quantity * item.price + acc
-      }, 0)
-      .toFixed(2)
+    return Number(
+      state.cart
+        .reduce((acc, item) => {
+          return item.quantity * item.price + acc
+        }, 0)
+        .toFixed(2)
+    )
   },
 }
 
@@ -43,5 +49,8 @@ export const mutations = {
   },
   toggleCart(state) {
     state.cartShow = !state.cartShow
+  },
+  setUsdt(state, payload) {
+    state.usdt = payload
   },
 }

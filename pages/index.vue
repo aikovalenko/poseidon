@@ -53,7 +53,11 @@ export default {
     },
   },
   mounted() {
-    // setInterval(() => this.fetchCourses(), 1500)
+    this.$store.commit('setUsdt', this.getRandomArbitrary(20, 80))
+    setInterval(() => {
+      this.fetchCourses()
+      this.$store.commit('setUsdt', this.getRandomArbitrary(20, 80))
+    }, 1500)
   },
   methods: {
     async fetchCourses() {
@@ -69,6 +73,9 @@ export default {
     },
     addToCart(item) {
       this.$store.commit('addToCart', item)
+    },
+    getRandomArbitrary(min, max) {
+      return Number((Math.random() * (max - min) + min).toFixed(2))
     },
   },
 }
