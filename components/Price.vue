@@ -23,9 +23,9 @@ export default {
     changeClass() {
       let className = ''
       if (this.change === 'up') {
-        className = 'bg-red-300'
+        className = 'price-up'
       } else if (this.change === 'down') {
-        className = 'bg-green-300'
+        className = 'price-down'
       }
       return className
     },
@@ -37,7 +37,38 @@ export default {
       } else if (newVal < oldVal) {
         this.change = 'down'
       } else this.change = null
+      setTimeout(() => {
+        this.change = null
+      }, 1000)
     },
   },
 }
 </script>
+
+<style lang="postcss" scoped>
+.price-down {
+  animation: bg-green 0.8s ease;
+}
+
+.price-up {
+  animation: bg-red 0.8s ease;
+}
+
+@keyframes bg-green {
+  0% {
+    @apply bg-green-300;
+  }
+  100% {
+    @apply bg-transparent;
+  }
+}
+
+@keyframes bg-red {
+  0% {
+    @apply bg-red-300;
+  }
+  100% {
+    @apply bg-transparent;
+  }
+}
+</style>
