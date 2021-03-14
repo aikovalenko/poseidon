@@ -1,5 +1,7 @@
 <template>
-  <span>Общая стоимость {{ convertedPrice }} руб.</span>
+  <span
+    >Общая стоимость <b>{{ convertedPrice }} руб</b></span
+  >
 </template>
 <script>
 import convertPrice from '~/mixins/convertPrice'

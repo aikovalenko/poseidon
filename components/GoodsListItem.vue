@@ -1,7 +1,12 @@
 <template>
-  <div class="hover:bg-gray-100 cursor-pointer" @click="addToCart(item)">
-    {{ item.name }} <span class="text-xs">({{ item.left }})</span> -
-    <Price :price="item.price" />
+  <div
+    class="flex justify-between items-start py-1 space-x-4 hover-bg-gray-200 cursor-pointer"
+    @click="addToCart(item)"
+  >
+    <div>
+      {{ item.name }} <span class="text-xs">({{ item.left }})</span>
+    </div>
+    <Price class="flex-shrink-0" :price="item.price" />
   </div>
 </template>
 <script>

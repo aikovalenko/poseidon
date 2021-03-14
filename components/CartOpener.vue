@@ -1,7 +1,7 @@
 <template>
   <div class="fixed right-0 top-0 p-4">
     <button
-      class="py-1 px-4 rounded-xl bg-green-200 focus:outline-none"
+      class="py-1 px-4 rounded-xl bg-green-200 focus-outline-none"
       @click="toggleCart"
     >
       Корзина -

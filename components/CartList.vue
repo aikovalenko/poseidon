@@ -1,13 +1,18 @@
 <template>
-  <table class="table w-full text-left">
+  <table class="table-auto w-full text-left border-collapse">
     <tr>
       <th>Наименование товара и описание</th>
       <th>Количество</th>
-      <th>Цена (руб.)</th>
+      <th>Цена</th>
       <th></th>
     </tr>
     <template v-if="cartQuantity > 0">
-      <CartListItem v-for="item in cart" :key="item.id" :item="item" />
+      <CartListItem
+        v-for="item in cart"
+        :key="item.id"
+        class="text-sm leading-tight align-top"
+        :item="item"
+      />
     </template>
     <template v-else>
       <tr>
@@ -30,6 +35,6 @@ export default {
 </script>
 <style lang="postcss" scoped>
 th {
-  @apply text-sm font-normal text-gray-700;
+  @apply px-2 pb-2 text-sm font-normal text-gray-700;
 }
 </style>

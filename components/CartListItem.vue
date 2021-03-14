@@ -5,10 +5,12 @@
       <CartListItemQuantity :item="item" />
     </td>
     <td>
-      <Price :price="item.price" />
+      <div class="inline-block">
+        <Price class="inline-block" :price="item.price" :per-item="true" />
+      </div>
     </td>
     <td>
-      <button class="focus:outline-none" @click="removeFromCart(item)">
+      <button class="focus-outline-none" @click="removeFromCart(item)">
         Удалить
       </button>
     </td>
@@ -31,3 +33,8 @@ export default {
   },
 }
 </script>
+<style lang="postcss" scoped>
+td {
+  @apply px-2 py-4 border-t;
+}
+</style>

@@ -2,14 +2,16 @@
   <div>
     <input
       v-model="value"
-      class="w-16 border focus:outline-none"
+      class="w-16 p-1 border focus-outline-none"
       type="number"
       min="1"
       :max="item.left"
       @keypress="validate"
       @input="changeQuantityByInput($event)"
     />
-    <div v-show="itemIsLimited" class="text-xs">Количество ограничено</div>
+    <div v-show="itemIsLimited" class="mt-1 text-xs leading-tight">
+      Количество ограничено
+    </div>
   </div>
 </template>
 <script>

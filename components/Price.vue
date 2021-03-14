@@ -1,10 +1,19 @@
 <template>
-  <span :class="changeClass">{{ convertedPrice }}</span>
+  <div :class="changeClass">
+    {{ convertedPrice }} руб
+    <span v-show="perItem" class="text-xs text-gray-600">/ шт.</span>
+  </div>
 </template>
 <script>
 import convertPrice from '~/mixins/convertPrice'
 export default {
   mixins: [convertPrice],
+  props: {
+    perItem: {
+      type: Boolean,
+      required: false,
+    },
+  },
   data() {
     return {
       change: null,

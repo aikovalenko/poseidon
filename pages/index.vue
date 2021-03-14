@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto px-2 pt-16">
+  <div class="container mx-auto max-w-3xl px-2 pt-16">
     <CartOpener />
     <Cart />
     <div class="space-y-4">
