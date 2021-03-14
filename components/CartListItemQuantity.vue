@@ -33,6 +33,7 @@ export default {
     },
   },
   watch: {
+    // следим за введеными значениями
     value: {
       immediate: true,
       handler(newVal) {
@@ -40,6 +41,7 @@ export default {
           this.value = 1
           this.changeQuantity(this.value)
         } else if (newVal >= this.item.left) {
+          // если пользователь захотел больше товаров чем есть - показываем предупрежние и не убираем его
           this.value = this.item.left
           this.changeQuantity(this.value)
           this.itemIsLimited = true
@@ -56,6 +58,7 @@ export default {
   methods: {
     ...mapActions(['setQuantity']),
     validate(e) {
+      // не позволяем нажимать неугодные нам клавиши
       const exeptions = ['KeyE', 'Minus', 'Equal', 'Plus', 'Comma', 'Period']
       if (exeptions.includes(e.code)) {
         e.preventDefault()
