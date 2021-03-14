@@ -32,7 +32,11 @@ export const mutations = {
         ...item,
         quantity: 1,
       })
-    } else record.quantity++
+    } else if (record.quantity < record.left) record.quantity++
+  },
+  changeQuantity(state, { payload }) {
+    const record = state.cart.find((i) => i.id === payload.item.id)
+    record.quantity = payload.quantity
   },
   removeFromCart(state, item) {
     state.cart = state.cart.filter((i) => i.id !== item.id)

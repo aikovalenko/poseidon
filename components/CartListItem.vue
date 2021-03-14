@@ -1,7 +1,9 @@
 <template>
   <tr>
     <td>{{ item.category }}. {{ item.name }}</td>
-    <td>{{ item.quantity }}</td>
+    <td>
+      <CartListItemQuantity :item="item" />
+    </td>
     <td>{{ item.price }}</td>
     <td>
       <button class="focus:outline-none" @click="removeFromCart(item)">
@@ -11,7 +13,9 @@
   </tr>
 </template>
 <script>
+import CartListItemQuantity from './CartListItemQuantity.vue'
 export default {
+  components: { CartListItemQuantity },
   props: {
     item: {
       type: Object,
