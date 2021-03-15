@@ -32,9 +32,11 @@ export default {
   },
   watch: {
     convertedPrice(newVal, oldVal) {
-      if (newVal > oldVal) {
+      const newValNum = Number(newVal)
+      const oldValNum = Number(oldVal)
+      if (newValNum > oldValNum) {
         this.change = 'up'
-      } else if (newVal < oldVal) {
+      } else if (newValNum < oldValNum) {
         this.change = 'down'
       } else this.change = null
       setTimeout(() => {

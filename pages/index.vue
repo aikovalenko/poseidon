@@ -21,15 +21,15 @@ export default {
   components: { CartOpener, Cart, CategoriesList },
   async asyncData({ $axios }) {
     // первый раз забираем данные
-    const data = await $axios
+    const rawData = await $axios
       .get(process.env.baseURL + '/data/data.json')
       .then((res) => res.data)
 
-    const names1 = await $axios
+    const rawNames = await $axios
       .get(process.env.baseURL + '/data/names.json')
       .then((res) => res.data)
 
-    return { goods: data.Value.Goods, names: names1 }
+    return { goods: rawData.Value.Goods, names: rawNames }
   },
   data() {
     return {
@@ -42,11 +42,11 @@ export default {
       // наш рабочий массив с человекочитаемыми объктами
       const array = this.goods.reduce((accumulator, i) => {
         accumulator.push({
-          id: i.T,
-          category: this.names[i.G].G,
-          name: this.names[i.G].B[i.T].N,
-          price: i.C,
-          left: i.P,
+          id: i.T || 0,
+          category: this.names[i.G].G || '',
+          name: this.names[i.G].B[i.T].N || '',
+          price: i.C || 0,
+          left: i.P || 0,
         })
         return accumulator
       }, [])
