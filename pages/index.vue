@@ -41,12 +41,30 @@ export default {
     dataByCategory() {
       // наш рабочий массив с человекочитаемыми объктами
       const array = this.goods.reduce((accumulator, i) => {
+        const idRaw = i.T || 0
+        const priceRaw = i.C || 0
+        const leftRaw = i.P || 0
+        const categoriesListRaw = this.names[i.G]
+        const categoryRaw = categoriesListRaw ? categoriesListRaw.G : ''
+        const goodsListByCategoryRaw =
+          categoryRaw && categoriesListRaw ? categoriesListRaw.B : ''
+        const goodsListItemRaw =
+          categoryRaw && categoriesListRaw && goodsListByCategoryRaw
+            ? goodsListByCategoryRaw[i.T]
+            : ''
+        const goodsListItemRawName =
+          categoryRaw &&
+          categoriesListRaw &&
+          goodsListByCategoryRaw &&
+          goodsListItemRaw
+            ? goodsListItemRaw.N
+            : ''
         accumulator.push({
-          id: i.T || 0,
-          category: this.names[i.G].G || '',
-          name: this.names[i.G].B[i.T].N || '',
-          price: i.C || 0,
-          left: i.P || 0,
+          id: idRaw,
+          category: categoryRaw,
+          name: goodsListItemRawName,
+          price: priceRaw,
+          left: leftRaw,
         })
         return accumulator
       }, [])
